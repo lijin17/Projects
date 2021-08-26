@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
+
+    
+
+    <!--
+    Most controllers will use the ControllerClassNameHandlerMapping above, but
+    for the index controller we are using ParameterizableViewController, so we must
+    define an explicit mapping for it.
+    -->
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="signin.htm">SignInController</prop>
+                <prop key="AdminReg.htm">AdminRegController</prop>
+                <prop key="NursingReg.htm">NursingRegController</prop>
+                <prop key="ElderReg.htm">ElderRegController</prop>
+                
+                <prop key="NursingLogin.htm">NursingLoginController</prop>
+                <prop key="ElderLogin.htm">ElderLoginController</prop>
+                <prop key="AdminLogin.htm">AdminLoginController</prop>
+                <prop key="Notification.htm">SendNotiController</prop>
+                <prop key="NotificationElder.htm">SendElderNotiController</prop>
+                <prop key="CheckNotification.htm">CheckNotiController</prop>
+                <prop key="CheckElderNoti.htm">CheckElderNotiController</prop>
+                <prop key="ElderModify.htm">ElderModifyController</prop>
+                <prop key="ElderDelete.htm">ElderDeleteController</prop>
+                <prop key="NursingDelete.htm">NursingDeleteController</prop>
+                <prop key="CheckBody.htm">CheckBodyController</prop>
+                <prop key="Logout.htm">LogoutController</prop>
+                <prop key="AddBody.htm">AddBodyController</prop>
+                <prop key="StatisNurse.htm">StatisNurseController</prop>
+                
+                <prop key="searchMovie.htm">SearchMovieController</prop>
+            </props>
+        </property>
+    </bean>
+    
+    
+    <bean name="addMovieValidator" class="com.neu.validator.addElderValidator" />    
+    <bean name="searchMovieValidator" class="com.neu.validator.searchMovieValidator"/>
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource" p:basename="message"/>
+    
+    <bean name="ElderLoginController" class="com.neu.controller.ElderLoginController"/>
+    <bean name="NursingLoginController" class="com.neu.controller.NursingLoginController"/>
+    <bean name="AdminLoginController" class="com.neu.controller.AdminLoginController"/>
+    <bean name="SignInController" class="com.neu.controller.SignInController" />
+    <bean name="AdminRegController" class="com.neu.controller.AdminRegController" />
+    <bean name="ElderRegController" class="com.neu.controller.ElderRegController"/>
+    <bean name="NursingRegController" class="com.neu.controller.NursingRegController"/>
+    <bean name="SendNotiController" class="com.neu.controller.SendNotiController"/>
+    <bean name="CheckNotiController" class="com.neu.controller.CheckNotiController"/>
+    <bean name="ElderModifyController" class="com.neu.controller.ElderModifyController"/>
+    <bean name="ElderDeleteController" class="com.neu.controller.ElderDeleteController"/>
+    <bean name="CheckBodyController" class="com.neu.controller.CheckBodyController"/>
+    <bean name="LogoutController" class="com.neu.controller.LogoutController"/>
+    <bean name="AddBodyController" class="com.neu.controller.AddBodyController"/>
+    <bean name="CheckElderNotiController" class="com.neu.controller.CheckElderNotiController"/>
+    <bean name="SendElderNotiController" class="com.neu.controller.SendElderNotiController"/>
+    <bean name="NursingDeleteController" class="com.neu.controller.NursingDeleteController"/>
+    <bean name="StatisNurseController" class="com.neu.controller.StatisNurseController"/> 
+    <bean name="addMovieController" class="com.neu.controller.addMovieController"/> 
+    
+    
+        <!--<property name="validator">
+            <ref bean="addMovieValidator"/>
+        </property>
+    </bean>-->
+    
+    <bean name="SearchMovieController" class="com.neu.controller.SearchMovieController">
+        <property name="validator">
+            <ref bean="searchMovieValidator"/>
+        </property>
+    </bean>
+     
+    <bean name="FunctionController" class="com.neu.controller.SignInController"/>
+
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:prefix="/"
+          p:suffix=".jsp" />
+<!-- 
+          <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:prefix="/WEB-INF/jsp/"
+          p:suffix=".jsp" />
+          -->
+</beans>
